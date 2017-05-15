@@ -25,9 +25,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\" />
+    <Folder Include="src\arithmetic\" />
+    <Folder Include="src\app\" />
+    <Folder Include="src\framework\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\arithmetic\AStarFindRoute.lua" />
+    <Compile Include="src\arithmetic\testAStar.lua" />
     <Compile Include="src\main.lua" />
+    <Compile Include="src\MyApp.lua" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
