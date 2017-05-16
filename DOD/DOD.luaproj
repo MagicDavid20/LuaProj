@@ -25,15 +25,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\" />
-    <Folder Include="src\arithmetic\" />
+    <Folder Include="src\app\arithmetic\" />
     <Folder Include="src\app\" />
-    <Folder Include="src\framework\" />
+    <Folder Include="src\library\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\arithmetic\AStarFindRoute.lua" />
-    <Compile Include="src\arithmetic\testAStar.lua" />
+    <Compile Include="src\app\arithmetic\AStarFindRoute.lua" />
+    <Compile Include="src\app\interface.lua" />
+    <Compile Include="src\app\Test.lua" />
+    <Compile Include="src\library\functions.lua" />
+    <Compile Include="src\app\init.lua" />
+    <Compile Include="src\library\init_library.lua" />
+    <Compile Include="src\library\ioEx.lua" />
+    <Compile Include="src\library\json.lua" />
+    <Compile Include="src\library\mathEx.lua" />
+    <Compile Include="src\library\stringEx.lua" />
+    <Compile Include="src\library\tableEx.lua" />
     <Compile Include="src\main.lua" />
-    <Compile Include="src\MyApp.lua" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>

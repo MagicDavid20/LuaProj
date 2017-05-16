@@ -12,13 +12,15 @@ function __G__TRACKBACK__(errorMessage)
     print("----------------------------------------");
 end
 
-package.path = package.path .. ";src/"
+-- Init path
+local obj = io.popen("cd")
+local path = obj:read("*all"):sub(1,-2)
+obj:close()
 
-if true then
-    print(package.path)
-    print(package.path)
-end
+local lua_path = path.."\\src\\"
+local m_package_path = package.path
+package.path = string.format("%s;%s?.lua;%s?/init.lua", m_package_path, lua_path, lua_path)
 
-require("MyApp")();
+require("app.interface").new():run();
 
 --endregion

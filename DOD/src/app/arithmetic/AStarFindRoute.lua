@@ -3,7 +3,7 @@
 --Author:david
 --Purpose:a star find path
 
-module("AStarFindRoute", package.seeall)
+local AStarFindRoute = class("AStarFindRoute")
 
 --F = G + H
 --地图是x * y 的矩形， 左下角坐标为 (1,1)
@@ -59,20 +59,14 @@ local CHECK_P_LIST_RANGE = function(pList, xMax, yMax)
                             end
 local COMPARE_FUNC = function(p1, p2) return p1.f < p2.f end
 
-function table.nums(t)
-    local count = 0
-    for k, v in pairs(t) do
-        count = count + 1
-    end
-    return count
+function AStarFindRoute:ctor()
 end
 
---prop
-function init(prop)
+function AStarFindRoute:init(prop)
     X_MAX = prop.x
     Y_MAX = prop.y
 
-    initMapList(X_MAX, Y_MAX)
+    self:initMapList(X_MAX, Y_MAX)
     BARRIER_LIST = prop.barrageList
     START_POS = P(prop.startPos.x, prop.startPos.y)
     END_POS = P(prop.endPos.x, prop.endPos.y)
@@ -90,11 +84,11 @@ function init(prop)
     OPEN_MAP[START_POS.key] = START_POS
     table.insert(OPEN_LIST, START_POS)
 	
-    PATH_LIST = findPath() or {}
+    PATH_LIST = self:findPath() or {}
     return PATH_LIST
 end
 
-function initMapList(m, n)
+function AStarFindRoute:initMapList(m, n)
     MAP_LIST = {}
     for i = 1, m do
         MAP_LIST[i] = {}
@@ -104,7 +98,7 @@ function initMapList(m, n)
     end
 end
 
-function getNextPoints(point)
+function AStarFindRoute:getNextPoints(point)
     local nextPoints = {}
     for i = 1, #DIRECTIONS do
         local offset = DIRECTIONS[i]
@@ -120,16 +114,16 @@ function getNextPoints(point)
     return nextPoints
 end
 
-function findPath()
+function AStarFindRoute:findPath()
     while (table.nums(OPEN_LIST) > 0) do
 		CURRENT_POS = OPEN_LIST[1]
         table.remove(OPEN_LIST, 1)
         OPEN_MAP[CURRENT_POS.key] = nil
         if IS_SAME_P(CURRENT_POS, END_POS) then
-            return makePath(CURRENT_POS)
+            return self:makePath(CURRENT_POS)
         else
             CLOSED_MAP[CURRENT_POS.key] = CURRENT_POS
-            local nextPoints = getNextPoints(CURRENT_POS)
+            local nextPoints = self:getNextPoints(CURRENT_POS)
             for i = 1, #nextPoints do
                 local nextPoint = nextPoints[i]
                 if (OPEN_MAP[nextPoint.key] == nil )and (CLOSED_MAP[nextPoint.key] == nil) and (IS_BARRIER(nextPoint, BARRIER_LIST) == false) then
@@ -143,7 +137,7 @@ function findPath()
     return nil
 end
 
-function makePath(endPos)
+function AStarFindRoute:makePath(endPos)
     local path = {}
     local point = endPos
     while point.last ~= nil do
@@ -155,4 +149,5 @@ function makePath(endPos)
     return path
 end
 
+return AStarFindRoute
 --endregion
