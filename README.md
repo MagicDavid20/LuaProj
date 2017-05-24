@@ -1,6 +1,7 @@
 # LuaProj
+
 a lua debug proj 
 
-content：
+- content：
   - a star
   - number convert
