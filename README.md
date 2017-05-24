@@ -3,5 +3,5 @@
 a lua debug proj 
 
 - content：
-  a star  
-  number convert
+1. a star  
+2. number convert
