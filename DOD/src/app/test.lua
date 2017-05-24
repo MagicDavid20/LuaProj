@@ -34,10 +34,41 @@ function Test:AStar()
     print("david say path is "..src)
 end
 
+function Test:numConvert()
+    require("app.arithmetic.NumConvert")
+    local num = 10086
+
+    print("---- dec convert to x ----\n")
+    local text1 = ConvertDec2X(num, 10)
+	local text2 = ConvertDec2X(num, 2)
+	local text3 = ConvertDec2X(num, 8)
+	local text4 = ConvertDec2X(num, 16)
+	local text5 = ConvertDec2X(num, 14)
+    print(string.format("dec %d to dec %s", num, text1))
+    print(string.format("dec %d to bin %s", num, text2))
+    print(string.format("dec %d to Oct %s", num, text3))
+    print(string.format("dec %d to Hex %s", num, text4))
+    print(string.format("dec %d to 14  %s", num, text5))
+    
+    
+    print("\n---- string to num ----\n")
+    local num1 = ConvertStr2Dec(text1, 10)
+    local num2 = ConvertStr2Dec(text2, 2)
+    local num3 = ConvertStr2Dec(text3, 8)
+    local num4 = ConvertStr2Dec(text4, 16)
+    local num5 = ConvertStr2Dec(text5, 14)
+    print(string.format("dec:%s to dec %d", text1, num1))
+    print(string.format("bin:%s to dec %d", text2, num2))
+    print(string.format("Oct:%s to dec %d", text3, num3))
+    print(string.format("Hex:%s to dec %d", text4, num4))
+    print(string.format("14:%s to dec %d", text5, num5))    
+end
+
 --endregion
 
 function Test:run()
-    self.AStar()
+--    self.AStar()
+    self.numConvert()
 end
 
 

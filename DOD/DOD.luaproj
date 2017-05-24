@@ -31,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\app\arithmetic\AStarFindRoute.lua" />
+    <Compile Include="src\app\arithmetic\NumConvert.lua" />
     <Compile Include="src\app\interface.lua" />
     <Compile Include="src\app\Test.lua" />
     <Compile Include="src\library\functions.lua" />
