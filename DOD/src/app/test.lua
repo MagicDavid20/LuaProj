@@ -66,9 +66,39 @@ end
 
 --endregion
 
+function Test:testMetatable()
+
+    local function CreateTable(key, _Visitor)
+	    local table = { 
+		    __name = key 
+	    }
+	    local mt = { }
+	    function mt.__index(_t, _k)  
+		    local value = rawget(_t, _k)
+		    if value == nil then  
+			    if key == nil then value = CreateTable(_k, _Visitor)
+			    else value = CreateTable(key .. '.' .. _k, _Visitor) 
+			    end 
+			    rawset(_t, _k, value)
+		    end
+		    return value
+	    end
+	    function mt.__call()
+		    return _Visitor(key)
+	    end 
+	    setmetatable(table, mt) 
+	    return table
+    end
+
+    local __test = CreateTable(nil, print)
+
+    __test.temp.root()
+end
+
 function Test:run()
 --    self.AStar()
-    self.numConvert()
+--    self.numConvert()
+    self.testMetatable()
 end
 
 
