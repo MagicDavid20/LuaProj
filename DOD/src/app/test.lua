@@ -98,7 +98,7 @@ end
 function Test:run()
 --    self.AStar()
 --    self.numConvert()
-    self.testMetatable()
+--    self.testMetatable()
 end
 
 
